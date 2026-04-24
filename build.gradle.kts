@@ -1,14 +1,13 @@
-import org.jetbrains.changelog.Changelog
-import org.jetbrains.intellij.tasks.RunTask
-
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("org.jetbrains.intellij") version "1.17.2"
     id("org.jetbrains.changelog") version "2.2.0"
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+fun prop(key: String): String = project.property(key) as String
+
+group = prop("pluginGroup")
+version = prop("pluginVersion")
 
 repositories {
     mavenCentral()
@@ -19,10 +18,10 @@ dependencies {
 }
 
 intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType"))
-    downloadSources.set(properties("platformDownloadSources").toBoolean())
+    pluginName.set(prop("pluginName"))
+    version.set(prop("platformVersion"))
+    type.set(prop("platformType"))
+    downloadSources.set(prop("platformDownloadSources").toBoolean())
     updateSinceUntilBuild.set(true)
 }
 
@@ -32,8 +31,8 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set(properties("pluginSinceBuild"))
-        untilBuild.set(properties("pluginUntilBuild"))
+        sinceBuild.set(prop("pluginSinceBuild"))
+        untilBuild.set(prop("pluginUntilBuild"))
     }
 
     runIde {
