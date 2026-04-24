@@ -13,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-}
-
 intellij {
     pluginName.set(prop("pluginName"))
     version.set(prop("platformVersion"))
