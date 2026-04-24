@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "copy-reference-with-range"
+rootProject.name = "jetbrains-copy-range"
