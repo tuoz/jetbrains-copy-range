@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>io.github.tuoz.jetbrains-copy-range</id>
+    <name>Copy Reference with Range</name>
+    <vendor>OpenCode</vendor>
+    <description><![CDATA[
+        Copy file reference with line range when text is selected.
+        Supports filename, relative path, and absolute path modes.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Copy Reference with Range"
+                           displayType="BALLOON"/>
+        <applicationService
+                serviceImplementation="io.github.tuoz.jetbrains.copyrange.CopyRangeSettings"/>
+        <applicationConfigurable
+                instance="io.github.tuoz.jetbrains.copyrange.CopyRangeConfigurable"
+                id="com.copyrange.settings"
+                displayName="Copy Reference with Range"/>
+    </extensions>
+
+    <actions>
+        <action id="CopyReferenceWithRange"
+                class="io.github.tuoz.jetbrains.copyrange.CopyReferenceWithRangeAction"
+                text="Copy Reference with Range"
+                description="Copy file reference with line range">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="meta ctrl alt C"/>
+        </action>
+    </actions>
+</idea-plugin>
