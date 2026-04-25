@@ -16,7 +16,8 @@
         <action id="CopyReferenceWithRange"
                 class="io.github.tuoz.jetbrains.copyrange.CopyReferenceWithRangeAction"
                 text="Copy Reference with Range"
-                description="Copy file reference with line range">
+                description="Copy file reference with line range"
+                icon="/META-INF/pluginIcon.svg">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="meta ctrl alt C"/>
