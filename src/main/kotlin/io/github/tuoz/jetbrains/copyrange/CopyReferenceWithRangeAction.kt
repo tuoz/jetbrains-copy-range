@@ -1,7 +1,5 @@
 package io.github.tuoz.jetbrains.copyrange
 
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -56,14 +54,6 @@ class CopyReferenceWithRangeAction : AnAction(), DumbAware {
         }
 
         CopyPasteManager.getInstance().setContents(StringSelection(result))
-
-        val settings = CopyRangeSettings.getInstance()
-        if (settings.isShowToast()) {
-            NotificationGroupManager.getInstance()
-                .getNotificationGroup("Copy Reference with Range")
-                .createNotification("Copied: $result", NotificationType.INFORMATION)
-                .notify(project)
-        }
     }
 
     override fun update(e: AnActionEvent) {
@@ -75,22 +65,16 @@ class CopyReferenceWithRangeAction : AnAction(), DumbAware {
     }
 
     private fun formatPath(virtualFile: VirtualFile, project: com.intellij.openapi.project.Project): String {
-        return when (CopyRangeSettings.getInstance().getPathFormat()) {
-            PathFormat.FILENAME -> virtualFile.name
-            PathFormat.RELATIVE -> {
-                val projectBase = project.basePath
-                if (projectBase != null) {
-                    val filePath = virtualFile.path
-                    if (filePath.startsWith(projectBase)) {
-                        filePath.removePrefix(projectBase).trimStart('/')
-                    } else {
-                        virtualFile.name
-                    }
-                } else {
-                    virtualFile.name
-                }
+        val projectBase = project.basePath
+        return if (projectBase != null) {
+            val filePath = virtualFile.path
+            if (filePath.startsWith(projectBase)) {
+                filePath.removePrefix(projectBase).trimStart('/')
+            } else {
+                virtualFile.name
             }
-            PathFormat.ABSOLUTE -> virtualFile.path
+        } else {
+            virtualFile.name
         }
     }
 }
