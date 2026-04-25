@@ -18,7 +18,7 @@ intellij {
     version.set(prop("platformVersion"))
     type.set(prop("platformType"))
     downloadSources.set(prop("platformDownloadSources").toBoolean())
-    updateSinceUntilBuild.set(true)
+    updateSinceUntilBuild.set(false)
 }
 
 tasks {
@@ -28,7 +28,6 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set(prop("pluginSinceBuild"))
-        untilBuild.set(prop("pluginUntilBuild"))
     }
 
     runIde {
