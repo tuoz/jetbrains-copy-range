@@ -6,8 +6,8 @@ IntelliJ Platform plugin that copies file reference with line range when text is
 
 Select a block of code and press:
 
-- **macOS**: `⌘⌃⌥C`
-- **Windows/Linux**: `Ctrl+Alt+Shift+C`
+- **macOS**: `Cmd+Ctrl+Opt+C`
+- **Windows/Linux**: `Ctrl+Alt+C`
 
 Copies to clipboard as `<filename>:<start>-<end>`, e.g. `main.rs:1-3`.
 
